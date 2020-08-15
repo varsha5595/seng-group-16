@@ -1,0 +1,42 @@
+language: python
+os:
+    windows
+    linux
+dist: trusty
+arch: amd64
+sudo: false
+import:
+    source: ./example.yml@v1
+    mode: merge
+    if: branch = master
+env:
+    global:
+    - var_a = VAR_A
+    jobs:
+    - var_b = VAR_B
+    - var_c = VAR_C
+compiler: gcc
+osx_image: string
+stages:
+    name: unit tests
+    if: branch = master
+jobs:
+    include:
+    - language: ruby
+      os: linux
+      dist: trusty
+    exclude:
+    - language: ruby
+      os: linux
+      dist: trusty
+    allow_failures:
+    - language: ruby
+      os: linux
+      dist: trusty
+    fast_finish:
+    - language: ruby
+      os: windows
+      dist: trusty
+notifications:
+    secure: encrypted string
+version: ">= 1.2.15"
