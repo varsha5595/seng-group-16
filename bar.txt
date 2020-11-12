@@ -1,0 +1,2 @@
+this is a bar.txt file. 
+GITS rock.
